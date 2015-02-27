@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>Search Results</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../bootstrap/css/jumbotron.css" rel="stylesheet">
+    <link href="/stylesheets/search_results.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="../javascripts/jquery.tablesorter.min.js"></script>
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">My Home</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a><%= firstname %></a></li>
+            <li class="active"><a>Buyer</a></li>
+            <li class="active"><a href="/">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        
+        <table class="table table-hover tablesorter" id="result_table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>City</th>
+              <th>Address</th>
+              <th>Price</th>
+              <th>Bedrooms</th>
+              <th>Bathrooms</th>
+              <th>Sq. Ft</th>
+              <th>Type</th>
+              <th>Rent/Buy</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <% for(var i = 0; i < search_results.length; i++) { %>
+                  <tr>
+                    <td><%= search_results[i].name %></td>
+                    <td><%= search_results[i].city %></td>
+                    <td><%= search_results[i].address[0] %><br>
+                        <%= search_results[i].address[1] %></td>
+                    <td><%= search_results[i].price %></td>
+                    <td><%= search_results[i].bedrooms %></td>
+                    <td><%= search_results[i].bathrooms %></td>
+                    <td><%= search_results[i].sqft %></td>
+                    <td><%= search_results[i].property_type %></td>
+                    <td><%= search_results[i].contract_type %></td>
+                    <% var id = search_results[i].id %>
+                    <td><a class="btn btn-primary btn-lg" role="button" href="/result?firstname=<%= firstname %>&id=<%= search_results[i].id %>">View</a>
+                  </tr>
+            <% } %>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() 
+        { 
+            $("#result_table").tablesorter(); 
+        }); 
+    </script>
+  </body>
+</html>

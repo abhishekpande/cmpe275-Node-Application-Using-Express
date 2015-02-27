@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>Manage Ads</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../bootstrap/css/jumbotron.css" rel="stylesheet">
+    <link href="/stylesheets/search_results.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">My Home</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a><%= firstname %></a></li>
+            <li class="active"><a>Agent</a></li>
+            <li class="active"><a href="/">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>City</th>
+              <th>Address</th>
+              <th>Price</th>
+              <th>Rent/Buy</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <% for(var i = 0; i < posted_ads.length; i++) { %>
+                  <tr>
+                    <td><%= posted_ads[i].name %></td>
+                    <td><%= posted_ads[i].city %></td>
+                    <td><%= posted_ads[i].address[0] %><br>
+                        <%= posted_ads[i].address[1] %></td>
+                    <td><%= posted_ads[i].price %></td>
+                    <td><%= posted_ads[i].contract_type %></td>
+                    <td><%= posted_ads[i].status %></td>
+                    <td><a class="btn btn-primary btn-lg" role="button" href="/updateAd?firstname=<%= firstname %>&id=<%= posted_ads[i].id %>">Update</a>
+                    <td><a class="btn btn-primary btn-lg" role="button" href="/delete?firstname=<%= firstname %>&id=<%= posted_ads[i].id %>&agent_id=<%= posted_ads[i].agent_id %>">Delete</a>
+                  </tr>
+            <% } %>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
